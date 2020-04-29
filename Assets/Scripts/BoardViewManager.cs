@@ -43,23 +43,12 @@ public class BoardViewManager : MonoBehaviour
             for (int x = 0; x < width; x++)
             {
                 {
-                    viewGrid[x, y].InitializeSprite(gridData[x, y], gridHelper);
+                    viewGrid[x, y].InitializeSprite(gridData[x, y]);
                 }
             }
         }
 
-        yield return null;
+        PassengersSpawner passengersSpawner = GetComponent<PassengersSpawner>();
+        yield return StartCoroutine(passengersSpawner.LaunchPassengers(gridHelper));
     }
-
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-
-    //}
 }

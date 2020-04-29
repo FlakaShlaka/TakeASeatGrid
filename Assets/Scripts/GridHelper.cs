@@ -8,6 +8,7 @@ public class GridHelper
     public int aisleIndex;
 
     public CellView[,] viewGrid;
+    private int height;
 
     public Vector2Int playerPosition = Vector2Int.zero;
 
@@ -16,7 +17,9 @@ public class GridHelper
         this.dataGrid = dataGrid;
         this.viewGrid = viewGrid;
 
-        for (int y = 0; y < dataGrid.GetLength(1); y++)
+        height = dataGrid.GetLength(1);
+
+        for (int y = 0; y < height; y++)
         {
             if (dataGrid[0, y].cellType == CellType.aisle)
             {
@@ -61,7 +64,7 @@ public class GridHelper
     {
         int x = playerPosition.x;
         int y = playerPosition.y;
-        if (y == dataGrid.GetLength(1) - 1)
+        if (y == height - 1)
         {
             return false;
         }

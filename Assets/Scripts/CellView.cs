@@ -9,12 +9,9 @@ public class CellView : MonoBehaviour
 
     public CellData cellData;
 
-    public void InitializeSprite(CellData cellData, GridHelper dataGridHelper)
+    public void InitializeSprite(CellData cellData)
     {
         this.cellData = cellData;
-
-        MoveController moveController = GetComponent<MoveController>();
-        moveController.gridHelper = dataGridHelper;
 
         int spriteIndex = 0;
         switch (cellData.cellType)
@@ -33,7 +30,6 @@ public class CellView : MonoBehaviour
 
             case CellType.aisle:
                 spriteIndex = 3;
-                this.tag = "aisle";
                 break;
         }
 

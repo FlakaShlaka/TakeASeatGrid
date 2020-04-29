@@ -9,7 +9,7 @@ public class MoveController : MonoBehaviour
 
     public float speed = 5f;
     public float sprint = 15f;
-    public Transform MovePoint;
+    public Transform endPosition;
 
     [Header("Passenger's State")]
     // These should stay public -> being used from another script (PassArray)
@@ -39,6 +39,9 @@ public class MoveController : MonoBehaviour
     void Start()
     {
         state = State.moving;
+
+        GameObject controller = GameObject.Find("BoardViewManager");
+        controller.GetComponent<PassengersSpawner>().hasStarted = true;
     }
 
     void Update()
@@ -49,7 +52,7 @@ public class MoveController : MonoBehaviour
             case State.moving:
 
                 // move player to the right constantly
-                transform.position = Vector3.MoveTowards(transform.position, MovePoint.position, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, endPosition.position, speed * Time.deltaTime);
 
                 // turn "hora" for control indicator on \ off
                 Hora.gameObject.SetActive(isControlled);
@@ -57,7 +60,7 @@ public class MoveController : MonoBehaviour
                 // make the controlled player sprint
                 if (Input.GetKeyDown(KeyCode.D) && isControlled)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, MovePoint.position, speed * sprint * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, endPosition.position, speed * sprint * Time.deltaTime);
                 }
             
                 if (transform.position.x > 7.4f)
@@ -124,7 +127,7 @@ public class MoveController : MonoBehaviour
 
                 if (lastOne)
                 {
-                    GameObject controller = GameObject.Find("Controller");
+                    GameObject controller = GameObject.Find("GameManager");
                     controller.GetComponent<GameTimer>().hasFinished = true;
                 }
 

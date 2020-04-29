@@ -5,8 +5,6 @@ public enum CellType { firstclass, business, thisisus, aisle };
 
 public class CellData 
 {
-    public static string AISLE_TAG = "aisle";
-    
     public CellType cellType = CellType.firstclass;
     public bool isSeatTaken;
 
