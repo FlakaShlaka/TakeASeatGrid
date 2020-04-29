@@ -17,7 +17,6 @@ public class PassengersSpawner : MonoBehaviour
     private GameObject currentPassenger;
 
     public bool hasStarted = false; // set when first passenger is instanciated
-    private bool hasFinished = false;
 
     public IEnumerator LaunchPassengers(GridHelper dataGridHelper)
     {
@@ -36,14 +35,18 @@ public class PassengersSpawner : MonoBehaviour
             MoveController moveController = passengerInstance.GetComponent<MoveController>();
             moveController.gridHelper = dataGridHelper;
 
+            if (i == totalPassengers - 1)
+            {
+                moveController.lastOne = true;
+            }
+
             // save the new instance in the list
             passengersList.Add(passengerInstance);
 
             hasStarted = true;
+
             yield return new WaitForSeconds(spawnDelay);
         }
-
-        hasFinished = true;
     }
 
 
@@ -52,11 +55,6 @@ public class PassengersSpawner : MonoBehaviour
         if (hasStarted && passengersList.Count > 0)
         {
             ChangeControl();
-        }
-
-        if (hasFinished)
-        {
-            currentPassenger.GetComponent<MoveController>().lastOne = true;
         }
     }
 
