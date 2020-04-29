@@ -14,8 +14,6 @@ public class GameTimer : MonoBehaviour
     [SerializeField] float spawnTime;
     public Text spawnText;
 
-    //[SerializeField] Text countPass;
-
 
     public bool hasStarted = false;
     public bool hasFinished = false;
@@ -24,6 +22,7 @@ public class GameTimer : MonoBehaviour
    
     void Update()
     {
+        return; // TODO: Add canvas
         if (!hasFinished)
         {
             if (timeLeft > 0 && clock == false)

@@ -13,7 +13,8 @@ public class CellView : MonoBehaviour
     {
         this.cellData = cellData;
 
-        GetComponent<MoveController>().gridHelper = dataGridHelper;
+        MoveController moveController = GetComponent<MoveController>();
+        moveController.gridHelper = dataGridHelper;
 
         int spriteIndex = 0;
         switch (cellData.cellType)
